@@ -1,3 +1,4 @@
 files/
 drawing.py
 test.neo
+__pycache__/
