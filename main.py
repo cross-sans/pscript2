@@ -4,9 +4,20 @@ import compiler
 import importlib
 import sys
 import imp
-
+import json
 
 class Comand(cmd.Cmd):
+    try:
+        with open("usr.json",'r') as t:
+            dat = json.load(t)
+        user = dat["name"]
+        password = dat["p"]
+    except FileNotFound:
+        username = input("your name ")
+        password = int(input("your password "))
+        dat = {name:username, p:password}
+        with open("usr.json",'w') as t:
+            json.dump(dat)
     user = "test"
     print("type ? or help for commands")
     prompt = f"{user}> "
