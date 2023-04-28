@@ -1,4 +1,5 @@
 files/
+usr.json
 drawing.py
 test.neo
 __pycache__/

@@ -12,7 +12,7 @@ class Comand(cmd.Cmd):
             dat = json.load(t)
         user = dat["name"]
         password = dat["p"]
-    except FileNotFound:
+    except FileNotFoundError:
         username = input("your name ")
         password = int(input("your password "))
         dat = {name:username, p:password}
