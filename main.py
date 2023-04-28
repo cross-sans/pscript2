@@ -3,7 +3,6 @@ import subprocess
 import compiler
 import importlib
 import sys
-import imp
 import json
 
 class Comand(cmd.Cmd):
@@ -12,13 +11,13 @@ class Comand(cmd.Cmd):
             dat = json.load(t)
         user = dat["name"]
         password = dat["p"]
-    except FileNotFoundError:
+    except:
         username = input("your name ")
-        password = int(input("your password "))
-        dat = {name:username, p:password}
+        password = input("your password ")
+        dat = {"name":username, "p":password}
         with open("usr.json",'w') as t:
-            json.dump(dat)
-    user = "test"
+            json.dump(dat,t)
+        user = "test"
     print("type ? or help for commands")
     prompt = f"{user}> "
 
@@ -33,7 +32,15 @@ class Comand(cmd.Cmd):
         compiles a neo file into python, then executes it
         """
         compiler.compile_neo(arg)
-
+    def do_config(self):
+        """
+        changes you user credentials
+        """
+        username = input("your name ")
+        password = input("your password ")
+        dat = {"name":username, "p":password}
+        with open("usr.json",'w') as t:
+            json.dump(dat,t)
 
     def do_reload(self, arg):
         """
@@ -49,6 +56,12 @@ class Comand(cmd.Cmd):
         runs the file you give it
         """
         subprocess.run(['python', arg])
+
+    def do_quit(self):
+        """
+        quits app
+        """
+        return True
 
 
 if __name__ == '__main__':
