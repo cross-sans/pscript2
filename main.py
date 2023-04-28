@@ -32,7 +32,7 @@ class Comand(cmd.Cmd):
         compiles a neo file into python, then executes it
         """
         compiler.compile_neo(arg)
-    def do_config(self):
+    def do_config(self, arg):
         """
         changes you user credentials
         """
@@ -57,7 +57,7 @@ class Comand(cmd.Cmd):
         """
         subprocess.run(['python', arg])
 
-    def do_quit(self):
+    def do_quit(self,arg):
         """
         quits app
         """
